@@ -1,3 +1,4 @@
+/*
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -19,6 +20,7 @@ using static EnemyScript;
  *  
  */
 
+/*
 public class PlayerBattleScript : MonoBehaviour
 {
     //this just helps me keep track of which code should be executing and when
@@ -105,7 +107,7 @@ public class PlayerBattleScript : MonoBehaviour
         {
             Quit();
         */
-
+/*
         if(Input.anyKey && endScreenActive == true)
         {
             playerInfo.SetPlayerHealth(playerHealth);
@@ -610,7 +612,7 @@ public class PlayerBattleScript : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
     */
-
+/*
     public void Quit()
     {
         Application.Quit();
@@ -624,3 +626,4 @@ public class PlayerBattleScript : MonoBehaviour
         myMusic.Play();
     }
 }
+*/
