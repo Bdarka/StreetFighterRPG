@@ -18,6 +18,7 @@ public class CharacterClass : MonoBehaviour
     public int maxMana;
     public int storedActions;
     public int maxStoredActions;
+    public int[] comboDamage;
 
     // Character Attributes 
     public int Attack;
@@ -26,11 +27,21 @@ public class CharacterClass : MonoBehaviour
     public int KiDefense;
     public int Speed;
 
+    // Equipment Attributes 
+    public int eAttack;
+    public int eDefense;
+    public int eKi;
+    public int eKiDefense;
+    public int eSpeed;
+
+    // Player Action Variables 
+    public bool isDefending;
 
     // Adapted Street Fighter Mechanics
     public float lastTurnRecovery;
     public float turnTimer;
     [HideInInspector] public bool isEXMove;
+    public int comboCounter;
 
     // Calculation Variables
     public int damageDealt;
@@ -38,26 +49,4 @@ public class CharacterClass : MonoBehaviour
     // Display Variables
     public TextMeshProUGUI myHealth;
     public TextMeshProUGUI myDamageTaken;
-
-    #region Turn Functions
-    public void PlayerTurn(string[] actions)
-    {
-
-    }
-
-    public void NewTurnTimer(float recovery)
-    {
-
-    }
-
-    #endregion
-
-    public void TakeDamage(int damage)
-    {
-        health -= damage;
-        myHealth.text = health.ToString();
-
-        myDamageTaken.gameObject.SetActive(true);
-        myDamageTaken.text = damage.ToString();
-    }
 }
