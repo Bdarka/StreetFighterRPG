@@ -507,16 +507,24 @@ MonoBehaviour:
   maxMana: 0
   storedActions: 0
   maxStoredActions: 0
+  comboDamage: 
   Attack: 0
   Defense: 0
   Ki: 0
   KiDefense: 0
   Speed: 0
+  eAttack: 0
+  eDefense: 0
+  eKi: 0
+  eKiDefense: 0
+  eSpeed: 0
+  isDefending: 0
   lastTurnRecovery: 0
   turnTimer: 0
   isEXMove: 0
+  comboCounter: 0
   damageDealt: 0
-  myHealth: {fileID: 0}
+  myHealth: {fileID: 1472017227}
   myDamageTaken: {fileID: 0}
 --- !u!1 &1303377471
 GameObject:
@@ -1151,9 +1159,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerCharacters:
   - {fileID: 939987167}
+  playerCharacterNames: []
   playerHealth:
   - {fileID: 1472017227}
-  playerTimer: []
+  playerActionTimer: []
+  enemies: []
+  enemyHealth: []
+  enemyActionTimer: []
 --- !u!4 &2115612234
 Transform:
   m_ObjectHideFlags: 0
