@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using System;
+using Unity.VisualScripting;
 
 /* The purpose of this script is to make a template for all the player characters. 
  * After that it should be easy to implement the other characters
@@ -12,9 +13,9 @@ using System;
 public class CharacterClass : MonoBehaviour
 {
     // Setting character resources
-    public int health;
+    public int currentHealth;
     public int maxHealth;
-    public int mana;
+    public int currentMana;
     public int maxMana;
     public int storedActions;
     public int maxStoredActions;
@@ -47,6 +48,26 @@ public class CharacterClass : MonoBehaviour
     public int damageDealt;
 
     // Display Variables
+    public string characterName;
+    public int characterLevel;
     public TextMeshProUGUI myHealth;
     public TextMeshProUGUI myDamageTaken;
+    public List<Sprite> sprites;
+    public SpriteRenderer mySprite;
+
+    public void SetCharacter()
+    {
+
+    }
+
+    public void SetSprite(string newSprite)
+    {
+        foreach (Sprite spriteCheck in sprites)
+        {
+            if(spriteCheck.name  == newSprite)
+            {
+                mySprite.sprite = spriteCheck;
+            }
+        }
+    }
 }

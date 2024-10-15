@@ -46,9 +46,9 @@ public class RyuCharacterScript : CharacterClass, IPlayerTemplate
     public void SetAttributes()
     {
         maxHealth = PlayerPrefs.GetInt("RyuMaxHealth");
-        health = PlayerPrefs.GetInt("RyuCurrentHealth");
+        currentHealth = PlayerPrefs.GetInt("RyuCurrentHealth");
         maxMana = PlayerPrefs.GetInt("RyuMaxMana");
-        mana = PlayerPrefs.GetInt("RyuMana");
+        currentMana = PlayerPrefs.GetInt("RyuMana");
         Attack = PlayerPrefs.GetInt("RyuAttack") + PlayerPrefs.GetInt("RyuEAttack");
         Defense = PlayerPrefs.GetInt("RyuDefense") + PlayerPrefs.GetInt("RyuEDefense");
         Ki = PlayerPrefs.GetInt("RyuKi") + PlayerPrefs.GetInt("RyuEKi");
@@ -87,7 +87,7 @@ public class RyuCharacterScript : CharacterClass, IPlayerTemplate
             // damage does not change 
         }
 
-        health -= damage;
+        currentHealth -= damage;
         myDamageTaken.gameObject.SetActive(true);
         myDamageTaken.text = damage.ToString();
     }
