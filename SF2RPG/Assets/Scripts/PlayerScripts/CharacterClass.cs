@@ -17,19 +17,16 @@ public class CharacterClass : MonoBehaviour
     public int maxHealth;
     public int currentMana;
     public int maxMana;
-    public int storedActions;
-    public int maxStoredActions;
-    public int[] comboDamage;
 
     // Character Attributes 
-    public int Attack;
+    public int Strength;
     public int Defense;
     public int Ki;
     public int KiDefense;
     public int Speed;
 
     // Equipment Attributes 
-    public int eAttack;
+    public int eStrength;
     public int eDefense;
     public int eKi;
     public int eKiDefense;
@@ -37,15 +34,18 @@ public class CharacterClass : MonoBehaviour
 
     // Player Action Variables 
     public bool isDefending;
+    public int storedActions;
+    public int maxStoredActions;
+    public int comboCounter;
 
     // Adapted Street Fighter Mechanics
     public float lastTurnRecovery;
     public float turnTimer;
     [HideInInspector] public bool isEXMove;
-    public int comboCounter;
 
     // Calculation Variables
-    public int damageDealt;
+    public int physicalComboDamage;
+    public int kiComboDamage;
 
     // Display Variables
     public string characterName;

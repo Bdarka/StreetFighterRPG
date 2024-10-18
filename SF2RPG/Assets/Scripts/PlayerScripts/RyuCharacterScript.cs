@@ -29,6 +29,9 @@ public class RyuCharacterScript : CharacterClass, IPlayerTemplate
 
     #endregion
 
+    public RyuAttacks ryuAttack;
+    public List<RyuAttacks> currentAttackCombo;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -49,11 +52,12 @@ public class RyuCharacterScript : CharacterClass, IPlayerTemplate
         currentHealth = PlayerPrefs.GetInt("RyuCurrentHealth");
         maxMana = PlayerPrefs.GetInt("RyuMaxMana");
         currentMana = PlayerPrefs.GetInt("RyuMana");
-        Attack = PlayerPrefs.GetInt("RyuAttack") + PlayerPrefs.GetInt("RyuEAttack");
+        Strength = PlayerPrefs.GetInt("RyuStrength") + PlayerPrefs.GetInt("RyuEStrength");
         Defense = PlayerPrefs.GetInt("RyuDefense") + PlayerPrefs.GetInt("RyuEDefense");
         Ki = PlayerPrefs.GetInt("RyuKi") + PlayerPrefs.GetInt("RyuEKi");
         KiDefense = PlayerPrefs.GetInt("RyuKiDefense") + PlayerPrefs.GetInt("RyuEKiDefense");
         Speed = PlayerPrefs.GetInt("RyuSpeed") + PlayerPrefs.GetInt("RyuESpeed");
+        maxStoredActions = PlayerPrefs.GetInt("RyuTurns");
     }
 
     public void Defend()
@@ -61,12 +65,24 @@ public class RyuCharacterScript : CharacterClass, IPlayerTemplate
 
     }
 
-    public void PlayerDealDamage(string DamageType)
+    public void PlayerDealDamage()
     {
-        if(DamageType == "Physical")
+        List<RyuAttacks> checkedAttacks = new List<RyuAttacks>();
+
+        foreach(RyuAttacks attack in currentAttackCombo)
         {
-            damageDealt = Attack;
+            if(checkedAttacks.Contains(attack))
+            {
+                // do nothing
+            }
+            
+            else
+            {
+                ActionSwitch(attack); 
+            }
         }
+
+
     }
 
     public void PlayerTakeDamage(int damage, string DamageType)
@@ -91,4 +107,63 @@ public class RyuCharacterScript : CharacterClass, IPlayerTemplate
         myDamageTaken.gameObject.SetActive(true);
         myDamageTaken.text = damage.ToString();
     }
+
+    // Force players to use multiple moves by lowering damage each time they
+    // use the same move it does less damage in the combo
+    public int SameAttackCheck(RyuAttacks check, int baseDamage)
+    {
+        int sameAttackCount = 0;
+        int scaledComboDamage = 0;
+
+        foreach(RyuAttacks attack in currentAttackCombo)
+        {
+            if(attack == check)
+            {
+                sameAttackCount++;
+            }
+        }
+
+        for(int i = 0; i < sameAttackCount;i++)
+        {
+            scaledComboDamage += baseDamage - (int)(sameAttackCount * .60f);
+        }
+
+        return scaledComboDamage;
+    }
+
+    public int ActionSwitch(RyuAttacks currentAttack)
+    {
+        int baseDamage = 0;
+
+        switch(currentAttack)
+        {
+            case RyuAttacks.Attack:
+                {
+                    break;
+                }
+            case RyuAttacks.Hadoken:
+                {
+                    baseDamage = Hadoken();
+                    break;
+                }
+        }
+
+        return baseDamage;
+    }
+
+    #region Ryu Special Moves
+
+    public int Hadoken()
+    {
+        int damageDealt = (int)Mathf.Round(Ki * 1.5f);
+        return damageDealt;
+    }
+
+    public int Shoryuken()
+    {
+        int damageDealt = (int)Mathf.Round(Strength * 1.5f);
+        return damageDealt;
+    }
+
+    #endregion
 }
