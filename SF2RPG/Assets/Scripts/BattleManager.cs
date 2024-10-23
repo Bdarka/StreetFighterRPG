@@ -49,7 +49,7 @@ public class BattleManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        SetupBattle();
+        StartCoroutine(SetupBattle());
 
         battleState = BattleState.Start;
     }
@@ -59,7 +59,7 @@ public class BattleManager : MonoBehaviour
     void Update()
     {
     }
-    private void SetupBattle()
+    IEnumerator SetupBattle()
     {
         // places Player characters, Calls Object to Set Their UI
 
@@ -91,6 +91,8 @@ public class BattleManager : MonoBehaviour
 
         UIManager.SetEnemyUI(enemyCharacters);
 
+        yield return new WaitForSeconds(2f);
+
         TimeManager.battleParticipants = battleParticipants;
     }
 
@@ -101,6 +103,7 @@ public class BattleManager : MonoBehaviour
 
         // Basically we're counting down in the timer function, then passing over whichever character's timer reaches zero
         // then setting the battle state to that character's turn. Should also avoid issues with out of range indexes.
+        // This could've been done with battleParticipants[turn] but I like it this way as its more readable to me
         int turn = battleParticipants.IndexOf(character);
 
         switch (turn)
@@ -108,51 +111,61 @@ public class BattleManager : MonoBehaviour
             case 0:
                 {
                     battleState = BattleState.CharacterTurn1;
+                    playerCharacters[0].CharacterTurn();
                     break;
                 }
             case 1:
                 {
                     battleState = BattleState.CharacterTurn2;
+                    playerCharacters[1].CharacterTurn();
                     break;
                 }
             case 2:
                 {
                     battleState = BattleState.CharacterTurn3;
+                    playerCharacters[2].CharacterTurn();
                     break;
                 }
             case 3:
                 {
                     battleState = BattleState.CharacterTurn4;
+                    playerCharacters[3].CharacterTurn();
                     break;
                 }
             case 4:
                 {
                     battleState = BattleState.EnemyTurn1;
+                    enemyCharacters[0].CharacterTurn();
                     break;
                 }
             case 5:
                 {
                     battleState = BattleState.EnemyTurn2;
+                    enemyCharacters[1].CharacterTurn();
                     break;
                 }
             case 6:
                 {
                     battleState = BattleState.EnemyTurn3;
+                    enemyCharacters[2].CharacterTurn();
                     break;
                 }
             case 7:
                 {
                     battleState = BattleState.EnemyTurn4;
+                    enemyCharacters[3].CharacterTurn();
                     break;
                 }
             case 8:
                 {
                     battleState = BattleState.EnemyTurn5;
+                    enemyCharacters[4].CharacterTurn();
                     break;
                 }
             case 9:
                 {
                     battleState = BattleState.EnemyTurn6;
+                    enemyCharacters[5].CharacterTurn();
                     break;
                 }
         }

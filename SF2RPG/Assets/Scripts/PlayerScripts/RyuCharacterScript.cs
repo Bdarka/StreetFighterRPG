@@ -19,7 +19,7 @@ public class RyuCharacterScript : CharacterClass, IPlayerTemplate
         ShinkuHadoken,
         ShinTatsumaki,
         DenjinHadoken,
-        ShinShoryuken,
+        ShinShoryuken
     }
 
     public enum SuperMoves
@@ -31,6 +31,7 @@ public class RyuCharacterScript : CharacterClass, IPlayerTemplate
 
     public RyuAttacks ryuAttack;
     public List<RyuAttacks> currentAttackCombo;
+    public RyuDictionary RyuDictionary;
 
     // Start is called before the first frame update
     void Start()
@@ -65,6 +66,11 @@ public class RyuCharacterScript : CharacterClass, IPlayerTemplate
 
     }
 
+    public new void CharacterTurn()
+    {
+        Debug.Log("Ryu's Turn!");
+    }
+
     public void PlayerDealDamage()
     {
         List<RyuAttacks> checkedAttacks = new List<RyuAttacks>();
@@ -78,7 +84,7 @@ public class RyuCharacterScript : CharacterClass, IPlayerTemplate
             
             else
             {
-                ActionSwitch(attack); 
+               // ActionSwitch(attack); 
             }
         }
 
@@ -131,24 +137,29 @@ public class RyuCharacterScript : CharacterClass, IPlayerTemplate
         return scaledComboDamage;
     }
 
-    public int ActionSwitch(RyuAttacks currentAttack)
+    
+
+    public void ActionSelect(string selectedAttack)
     {
         int baseDamage = 0;
 
-        switch(currentAttack)
+        if(storedActions > -1)
         {
-            case RyuAttacks.Attack:
-                {
-                    break;
-                }
-            case RyuAttacks.Hadoken:
-                {
-                    baseDamage = Hadoken();
-                    break;
-                }
-        }
+            switch (selectedAttack)
+            {
+                case "Attack":
+                    {
+                        break;
+                    }
+                case "Hadoken":
+                    {
+                        baseDamage = Hadoken();
 
-        return baseDamage;
+                        storedActions--;
+                        break;
+                    }
+            }
+        }
     }
 
     #region Ryu Special Moves

@@ -60,6 +60,11 @@ public class CharacterClass : MonoBehaviour
 
     }
 
+    public void CharacterTurn()
+    {
+
+    }
+
     public void SetSprite(string newSprite)
     {
         foreach (Sprite spriteCheck in sprites)
