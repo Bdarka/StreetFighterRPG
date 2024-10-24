@@ -154,11 +154,21 @@ public class RyuCharacterScript : CharacterClass, IPlayerTemplate
                 case "Hadoken":
                     {
                         baseDamage = Hadoken();
-
-                        storedActions--;
+                        break;
+                    }
+                case "Shoryuken":
+                    {
+                        baseDamage = Shoryuken();
                         break;
                     }
             }
+
+            storedActions--;
+        }
+        else
+        {
+            // make the combo happen if the player tries to pick more actions 
+            // than they have stored.
         }
     }
 
@@ -167,12 +177,15 @@ public class RyuCharacterScript : CharacterClass, IPlayerTemplate
     public int Hadoken()
     {
         int damageDealt = (int)Mathf.Round(Ki * 1.5f);
+        lastTurnRecovery += .15f;
+        currentAttackCombo.Add(RyuAttacks.Hadoken);
         return damageDealt;
     }
 
     public int Shoryuken()
     {
         int damageDealt = (int)Mathf.Round(Strength * 1.5f);
+        currentAttackCombo.Add(RyuAttacks.Shoryuken);
         return damageDealt;
     }
 

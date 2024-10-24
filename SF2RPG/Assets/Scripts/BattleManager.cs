@@ -96,6 +96,8 @@ public class BattleManager : MonoBehaviour
         TimeManager.battleParticipants = battleParticipants;
     }
 
+    // This is called by TimeManager, which is responsible for counting down everyone's recovery
+    // Yes I know I could just click on the 1 reference button but this helps future me be less confused when I'm tracing code
     public void WhoseTurn(CharacterClass character)
     {
         // Look I know this could've been prettier but I'm gonna be so real:
