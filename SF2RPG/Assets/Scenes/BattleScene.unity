@@ -2187,6 +2187,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 994136097}
+  - component: {fileID: 994136098}
   m_Layer: 0
   m_Name: Enemy Spawn (1)
   m_TagString: Untagged
@@ -2210,6 +2211,47 @@ Transform:
   - {fileID: 1341611547}
   m_Father: {fileID: 603697043}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &994136098
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 994136096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afbbbcf27a4cd8c4f9312f2234cdcd53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentHealth: 0
+  maxHealth: 0
+  currentMana: 0
+  maxMana: 0
+  Strength: 0
+  Defense: 0
+  Ki: 0
+  KiDefense: 0
+  Speed: 0
+  eStrength: 0
+  eDefense: 0
+  eKi: 0
+  eKiDefense: 0
+  eSpeed: 0
+  isDefending: 0
+  storedActions: 0
+  maxStoredActions: 0
+  comboCounter: 0
+  lastTurnRecovery: 0
+  turnTimer: 0
+  isEXMove: 0
+  physicalComboDamage: 0
+  kiComboDamage: 0
+  characterName: 
+  characterLevel: 0
+  myHealth: {fileID: 0}
+  myDamageTaken: {fileID: 0}
+  sprites: []
+  mySprite: {fileID: 1341611548}
 --- !u!1 &1166374755
 GameObject:
   m_ObjectHideFlags: 0

@@ -28,7 +28,6 @@ public class TimeManager : MonoBehaviour
                 if (c.lastTurnRecovery < 0)
                 {
                     currentCharacterTurn = c;
-                    battleManager.WhoseTurn(c);
                     counting = false;
                 }
             }
